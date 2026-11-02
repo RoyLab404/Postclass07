@@ -1,0 +1,28 @@
+import e3.chapter6.*;
+import java.io.*;
+CardSource empty = new CompositeCardSource();
+if (!empty.isEmpty()) throw new AssertionError("Empty composite");
+Deck first = new Deck();
+Deck second = new Deck();
+CardSource tree = new CompositeCardSource(empty, first, new CompositeCardSource(second));
+for (int i = 0; i < 52; i++) tree.draw();
+if (!first.isEmpty() || second.isEmpty()) throw new AssertionError("Source order");
+for (int i = 0; i < 52; i++) tree.draw();
+if (!tree.isEmpty()) throw new AssertionError("104 cards");
+System.out.println("PASS Composite: empty, nested, order, 104 cards");
+ByteArrayOutputStream capture = new ByteArrayOutputStream();
+PrintStream console = System.out;
+System.setOut(new PrintStream(capture));
+CardSource wrapped = new LoggingDecorator(new MemorizingDecorator(new Deck()));
+for (int i = 0; i < 52; i++) wrapped.draw();
+System.setOut(console);
+if (!wrapped.isEmpty() || capture.toString().lines().count() != 52) throw new AssertionError("Decorator logging");
+System.out.println("PASS Decorator: 52 log lines, shared empty state");
+CardSource original = new CompositeCardSource(new Deck());
+CardSource copied = original.copy();
+Card expected = original.draw();
+if (copied.draw() != expected) throw new AssertionError("Copy order");
+for (int i = 0; i < 51; i++) original.draw();
+if (copied.isEmpty()) throw new AssertionError("Independent copy");
+System.out.println("PASS copy: same order, independent source state");
+/exit
