@@ -41,8 +41,6 @@ postclass07/
     └── Suit.java
 ```
 
-Project Eclipse nằm ngay ở thư mục gốc. Thư mục `bin` chứa kết quả biên dịch do Eclipse hoặc `javac` tạo ra và được bỏ qua khi đưa lên GitHub.
-
 ## Mở bằng Eclipse
 
 Cần JDK 21 trở lên và Eclipse có hỗ trợ Java 21. Mẫu DesignBook sử dụng các API như `List.reversed()`, `getLast()` và `removeLast()`.
@@ -143,4 +141,3 @@ Các liên kết ghim phiên bản và phân tích chi tiết nằm trong báo c
 - [Refactoring Guru về Decorator](https://refactoring.guru/design-patterns/decorator).
 - [Code mẫu DesignBook bản 3, chương 6](https://github.com/prmr/DesignBook/tree/ea45e0d72cbbfdc9bd7120e14d87d01f0bd3d1da/code-e3/e3/chapter6).
 
-Mã nguồn giữ thông tin tác giả và giấy phép CC BY-NC-ND 4.0 trong từng file. Đã biên dịch với mức tương thích Java 21 và chạy script kiểm tra, cả ba nhóm đều PASS. Chưa xác minh thao tác import trực tiếp trên giao diện Eclipse.
